@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
-import { Button, Card, Form } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import { Button, Card, Form } from 'react-bootstrap';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function Todo({ todo, index, markTodo, removeTodo }) {
@@ -11,7 +11,7 @@ function Todo({ todo, index, markTodo, removeTodo }) {
     >
       <span>{todo}</span>
       <div>
-        <Button variant="outline-danger" onClick={() => removeTodo(index)}>✕</Button>
+        <button variant="outline-danger" onClick={() => removeTodo(index)}>✕</button>
       </div>
     </div>
   );
@@ -28,15 +28,15 @@ function FormTodo({ addTodo }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit}> 
-    <Form.Group>
-      <Form.Label><b>Add Todo</b></Form.Label>
-      <Form.Control type="text" className="input" value={value} onChange={e => setValue(e.target.value)} placeholder="Add new todo" />
-    </Form.Group>
-    <Button variant="primary mb-3" type="submit">
+    <form onSubmit={handleSubmit}> 
+    {/* <Form.Group> */}
+      <label><b>Add Todo</b></label>
+      <input type="text" className="input" value={value} onChange={e => setValue(e.target.value)} placeholder="Add new todo" />
+    {/* </Form.Group> */}
+    <button variant="primary mb-3" type="submit">
       Submit
-    </Button>
-  </Form>
+    </button>
+  </form>
   );
 }
 
@@ -47,6 +47,7 @@ function App() {
     var newTodos = [...todos];
     // ERROR BELOW
     // correct answer: newTodos = newTodos.concat(text);
+    // newTodos = newTodos.concat(text);
     newTodos.concat(text);
     setTodos(newTodos);
   };
@@ -64,16 +65,20 @@ function App() {
         <FormTodo addTodo={addTodo} />
         <div>
           {todos.map((todo, index) => (
-            <Card>
-              <Card.Body>
+            // <Card>
+            <div className="card">
+              {/* <Card.Body> */}
+              <div className="card-body">
                 <Todo
                 key={index}
                 index={index}
                 todo={todo}
                 removeTodo={removeTodo}
                 />
-              </Card.Body>
-            </Card>
+              {/* </Card.Body> */}
+              </div>
+            {/* </Card> */}
+            </div>
           ))}
         </div>
       </div>
